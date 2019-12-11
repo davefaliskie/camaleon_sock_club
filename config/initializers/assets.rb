@@ -13,17 +13,13 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
-Rails.application.config.assets.precompile += %w( camaleon_cms/admin/admin-basic-manifest.css )
-Rails.application.config.assets.precompile += %w( camaleon_cms/admin/admin-basic-manifest.js )
-Rails.application.config.assets.precompile += %w( camaleon_cms/camaleon.png )
-Rails.application.config.assets.precompile += %w( camaleon_cms/favicon.ico )
+Rails.application.config.assets.precompile += [/.*\.js/,/.*\.css/]
 
-Rails.application.config.assets.precompile += %w( themes/camaleon_first/assets/css/main.css )
-Rails.application.config.assets.precompile += %w( themes/camaleon_first/assets/js/main.js )
-Rails.application.config.assets.precompile += %w( camaleon_cms/image-not-found.png )
+Rails.application.config.assets.precompile += Dir[Rails.root.join("app", "apps", "themes", "*", "assets", "**", "*.{js,css,png,jpg,gif}")]
+Rails.application.config.assets.precompile += Dir[Rails.root.join("app", "apps", "plugins", "*", "assets", "**", "*.{js,css,png,jpg,gif}")]
 
-Rails.application.config.assets.precompile += %w( camaleon_cms/admin/intro/menus.png )
-Rails.application.config.assets.precompile += %w( camaleon_cms/admin/admin-manifest.css )
-Rails.application.config.assets.precompile += %w( camaleon_cms/admin/tinymce/langs/en.js )
-Rails.application.config.assets.precompile += %w( camaleon_cms/admin/admin-manifest.js )
-Rails.application.config.assets.precompile += %w( camaleon_cms/admin/img/no_image.jpg )
+Rails.application.config.assets.precompile += Dir[File.join($camaleon_engine_dir, "app", "apps", "themes", "*", "assets", "**", "*.{js,css,png,jpg,gif}")]
+Rails.application.config.assets.precompile += Dir[File.join($camaleon_engine_dir, "app", "apps", "plugins", "*", "assets", "**", "*.{js,css,png,jpg,gif}")]
+
+Rails.application.config.assets.precompile += %w( themes/*/assets/images/* )
+Rails.application.config.assets.precompile += %w( plugins/*/assets/images/* )

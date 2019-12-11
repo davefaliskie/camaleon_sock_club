@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_12_11_004827) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -75,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_004827) do
     t.integer "custom_field_id"
     t.integer "term_order"
     t.string "object_class"
-    t.text "value", limit: 1073741823
+    t.text "value"
     t.string "custom_field_slug"
     t.integer "group_number", default: 0
     t.index ["custom_field_id"], name: "index_cama_custom_fields_relationships_on_custom_field_id"
@@ -105,7 +108,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_004827) do
 
   create_table "cama_metas", force: :cascade do |t|
     t.string "key"
-    t.text "value", limit: 1073741823
+    t.text "value"
     t.integer "objectid"
     t.string "object_class"
     t.index ["key"], name: "index_cama_metas_on_key"
@@ -116,8 +119,8 @@ ActiveRecord::Schema.define(version: 2019_12_11_004827) do
   create_table "cama_posts", force: :cascade do |t|
     t.text "title"
     t.text "slug"
-    t.text "content", limit: 1073741823
-    t.text "content_filtered", limit: 1073741823
+    t.text "content"
+    t.text "content_filtered"
     t.string "status", default: "published"
     t.datetime "published_at"
     t.integer "post_parent"
@@ -148,7 +151,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_004827) do
 
   create_table "cama_term_taxonomy", force: :cascade do |t|
     t.string "taxonomy"
-    t.text "description", limit: 1073741823
+    t.text "description"
     t.integer "parent_id"
     t.integer "count"
     t.text "name"
